@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin - Manage Products</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+}
+
+header .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+header .logout button {
+    background-color: white;
+    color: #4CAF50;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar li {
+    margin: 0 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Admin Dashboard */
+.admin-dashboard {
+    padding: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-dashboard h2 {
+    text-align: center;
+    font-size: 28px;
+}
+
+.product-form {
+    margin-bottom: 40px;
+}
+
+.product-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.product-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.product-form button:hover {
+    background-color: #45a049;
+}
+
+/* Product List */
+.product-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.product-card img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.product-card button {
+    background-color: red;
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.product-card button:hover {
+    background-color: #ff4d4d;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Admin Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1><a href="#">Water Express Admin</a></h1>
+            </div>
+            <div class="logout">
+                <button id="logoutButton">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Sidebar or Navigation -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="admin.html">Dashboard</a></li>
+            <li><a href="products.html">View Products</a></li>
+        </ul>
+    </nav>
+
+    <!-- Admin Dashboard Content -->
+    <main>
+        <section class="admin-dashboard">
+            <h2>Manage Products</h2>
+
+            <!-- Form to Add New Product -->
+            <div class="product-form">
+                <h3>Add New Product</h3>
+                <form id="productForm">
+                    <input type="text" id="productName" placeholder="Product Name" required />
+                    <input type="number" id="productPrice" placeholder="Product Price" required />
+                    <input type="url" id="productImage" placeholder="Product Image URL" required />
+                    <button type="submit">Add Product</button>
+                </form>
+            </div>
+
+            <!-- List of Products -->
+            <h3>All Products</h3>
+            <div id="productList"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Water Express. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // DOM Elements
+const productForm = document.getElementById("productForm");
+const productNameInput = document.getElementById("productName");
+const productPriceInput = document.getElementById("productPrice");
+const productImageInput = document.getElementById("productImage");
+const productList = document.getElementById("productList");
+
+// Product Array (temporary storage in localStorage)
+let products = JSON.parse(localStorage.getItem("products")) || [];
+
+// Function to render products
+function renderProducts() {
+    productList.innerHTML = "";
+    products.forEach((product, index) => {
+        const productCard = document.createElement("div");
+        productCard.classList.add("product-card");
+        productCard.innerHTML = `
+            <div>
+                <img src="${product.image}" alt="${product.name}" />
+                <h4>${product.name}</h4>
+                <p>$${product.price}</p>
+            </div>
+            <div>
+                <button onclick="deleteProduct(${index})">Delete</button>
+                <button onclick="editProduct(${index})">Edit</button>
+            </div>
+        `;
+        productList.appendChild(productCard);
+    });
+}
+
+// Function to add a product
+function addProduct(product) {
+    products.push(product);
+    localStorage.setItem("products", JSON.stringify(products));
+    renderProducts();
+}
+
+// Function to delete a product
+function deleteProduct(index) {
+    products.splice(index, 1);
+    localStorage.setItem("products", JSON.stringify(products));
+    renderProducts();
+}
+
+// Function to edit a product
+function editProduct(index) {
+    const product = products[index];
+    productNameInput.value = product.name;
+    productPriceInput.value = product.price;
+    productImageInput.value = product.image;
+
+    productForm.onsubmit = (e) => {
+        e.preventDefault();
+        const updatedProduct = {
+            name: productNameInput.value,
+            price: parseFloat(productPriceInput.value),
+            image: productImageInput.value,
+        };
+        products[index] = updatedProduct;
+        localStorage.setItem("products", JSON.stringify(products));
+        renderProducts();
+        resetForm();
+    };
+}
+
+// Reset the form after submission
+function resetForm() {
+    productNameInput.value = "";
+    productPriceInput.value = "";
+    productImageInput.value = "";
+    productForm.onsubmit = addProductForm;
+}
+
+// Add product form submission
+function addProductForm(e) {
+    e.preventDefault();
+    const newProduct = {
+        name: productNameInput.value,
+        price: parseFloat(productPriceInput.value),
+        image: productImageInput.value,
+    };
+    addProduct(newProduct);
+    resetForm();
+}
+
+// Event listener for form submission
+productForm.onsubmit = addProductForm;
+
+// Initial render
+renderProducts();
+
+
+
+    </script>
+</body>
+</html>

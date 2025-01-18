@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Water E-Commerce</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1><a href="#">Water Express</a></h1>
+            </div>
+            <div class="cart">
+                <button id="cartButton">🛒 Cart (0)</button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Offers</a></li>
+            <li><a href="contect.html">Contact Us</a></li>
+            <li><a href="admin.html">admin</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Section with Products -->
+    <main>
+        <section class="products">
+            <h2>Our Products</h2>
+            <div class="product-list">
+                <!-- Product 1 -->
+                <div class="product-card" data-id="1">
+                    <img src="water-bottle.jpg" alt="Water Bottle">
+                    <h3>Fresh Water Bottle</h3>
+                    <p>$10</p>
+                    <button class="add-to-cart" data-id="1" data-name="Fresh Water Bottle" data-price="10">Add to Cart</button>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card" data-id="2">
+                    <img src="water-filter.jpg" alt="Water Filter">
+                    <h3>Water Filter</h3>
+                    <p>$50</p>
+                    <button class="add-to-cart" data-id="2" data-name="Water Filter" data-price="50">Add to Cart</button>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card" data-id="3">
+                    <img src="bottle-pack.jpg" alt="Pack of Bottles">
+                    <h3>Pack of Bottles</h3>
+                    <p>$25</p>
+                    <button class="add-to-cart" data-id="3" data-name="Pack of Bottles" data-price="25">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Section -->
+        <section class="cart-section">
+            <h2>Your Cart</h2>
+            <div id="cartItems"></div>
+            <div id="totalAmount">Total: $0</div>
+            <button id="checkoutButton">Proceed to Checkout</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
