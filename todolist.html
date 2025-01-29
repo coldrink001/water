@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <style>
+        .main {
+            height: 100%;
+            width: 400px;
+            background-color: gray;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+        .sub {
+            margin-top: 20px;
+            height: 100%;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        input{
+        	width: 300px;
+        	height: 35px;
+        }
+        .task {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 10px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #ff5757;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h2>To-Do List</h2>
+        <input type="text" id="input" placeholder="Enter a task">
+        <button onclick="addTask()">ADD</button>
+        <div class="sub" id="taskList"></div>
+    </div>
+
+    <script>
+        const tasks = [];
+
+        function addTask() {
+        	if(input.value=='')
+        	{
+        		alert('please Enter task...!')
+        		return;
+        	}
+            const taskText = document.getElementById('input').value;
+            tasks.push(taskText);
+            newtask();
+            console.log("Tasks:", tasks);
+            document.getElementById('input').value = "";
+        }
+
+        function deleteTask(index) {
+            tasks.splice(index , 1);
+            newtask();
+            console.log("Task:", tasks);
+        }
+
+        function newtask() {
+            document.getElementById('taskList').innerHTML = tasks
+            .map((task, index) => 
+                    `<div class="task">
+                    	<span>${index + 1}</span>
+                        <span>${task}</span> 
+                        <button onclick="deleteTask(${index})">DELETE</button>
+                    </div>`
+                )
+                .join(" ")
+        }
+    </script>
+</body>
+</html>
