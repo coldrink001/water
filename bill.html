@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>shoppping bill</title>
+
+	<style type="text/css">
+			
+		*{
+			margin: 0;
+			padding:0;
+			box-sizing: border-box;
+		}
+		body{
+			font-family: unset;
+		}
+		.container{
+			margin: 30px 40px;
+		}
+		.cart{
+			width: 70%;
+
+		}
+		.single{
+			margin: 10px 0;
+			width: 32%;
+			font-size: 25px;
+			font-weight: bold;
+			border:1px solid transparent;
+			box-shadow: 2px 2px 5px black;
+			border-radius: 20px;
+			overflow: hidden;
+			height: 300px;
+		}
+		.flex{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+		.btn{
+			background-color: #8f363f;
+			color: white;
+			border-color: white;
+			padding:10px 20px;
+			border-radius: 10px;
+		}
+		.pg{
+			padding: 10px; 
+		}
+		.det{
+			width: 25%;
+			background-color: #8f363f;
+			margin: 20px;
+			color: white;
+			padding: 30px;
+			position: sticky;
+			top: 20%;
+			left: 0;
+			height: 20%;
+			
+		}
+		.det label{
+			margin: 50px 0;
+			font-size: 20px;
+
+		}
+		.input{
+			width: 40px;
+		}
+	</style>
+
+	<!-- https://user-images.githubusercontent.com/111274705/203516984-7eb0dddd-cbf7-4288-97b3-ce3fe3b7ef66.png -->
+
+</head>
+<body>
+
+	<div class="container flex">
+		<div class="cart flex">
+			<div class="single bg_gray">
+				<img src="images/1.jpg" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">100</span>
+					<button class="btn" onclick="add(100)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/2.webp" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">250</span>
+					<button class="btn" onclick="add(250)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/3.webp" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">300</span>
+					<button class="btn" onclick="add(300)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/4.jpg" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">140</span>
+					<button class="btn" onclick="add(140)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/5.jpg" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">340</span>
+					<button class="btn" onclick="add(340)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/6.jpg" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">200</span>
+					<button class="btn" onclick="add(200)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/1.jpg" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">300</span>
+					<button class="btn" onclick="add(300)" >Add To Cart</button>	
+				</div>
+			</div><div class="single bg_gray">
+				<img src="images/2.webp" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">250</span>
+					<button class="btn" onclick="add(250)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/3.webp" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">300</span>
+					<button class="btn" onclick="add(300)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/4.jpg" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">140</span>
+					<button class="btn" onclick="add(140)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/5.jpg" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">340</span>
+					<button class="btn" onclick="add(340)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/6.jpg" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">200</span>
+					<button class="btn" onclick="add(200)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/2.webp" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">250</span>
+					<button class="btn" onclick="add(250)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/3.webp" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">300</span>
+					<button class="btn" onclick="add(300)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/4.jpg" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">140</span>
+					<button class="btn" onclick="add(140)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/6.jpg" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">200</span>
+					<button class="btn" onclick="add(200)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/2.webp" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">250</span>
+					<button class="btn" onclick="add(150)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/3.webp" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">300</span>
+					<button class="btn" onclick="add(300)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/4.jpg" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">140</span>
+					<button class="btn" onclick="add(140)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/2.webp" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">250</span>
+					<button class="btn" onclick="add(250)" >Add To Cart</button>	
+				</div>
+			</div>
+			<div class="single bg_gray">
+				<img src="images/3.webp" width="100%" height="200px">
+				<span>Cheese burger</span>
+				<div class="flex pg ">
+					<span id="click">300</span>
+					<button class="btn" onclick="add(300)" >Add To Cart</button>	
+				</div>
+			</div>
+		</div>
+		<div class="det">
+			<label>
+				Item :
+				<span id="it"></span>
+			</label>
+			<br><br><br>
+			<label>
+				Total Price :
+				<span id="tp"></span>
+			</label>
+			<br><br><br>
+			<label>
+				SGST(2.5%):
+				<span id="sg"></span>
+			</label>
+			<br><br><br>
+			<label>
+				CGST(2.5%) :
+				<span id="cg"></span>
+			</label>
+			<br><br><br>
+			<label>
+				IGST(5%) :
+				<span id="ig"></span>
+			</label>
+			<br><br><br>
+			<label>
+				Discount  <input type="number" value="0" class="input" id="dis" onclick="discount()">% :
+				<span id="disp"></span>
+				<span>	%</span>
+			</label>
+			<br><br><br>
+			<label>
+				Net Amount :
+				<span id="net"></span>
+			</label>
+			<br><br><br>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var tp=0;
+		var cnt=0;
+		var igst;
+
+		function add(pri) {
+			tp=tp+pri;
+			console.log(tp)
+			cnt=cnt+1;
+			document.getElementById('it').innerText = cnt;
+			document.getElementById('tp').innerText=tp;
+
+			var sgst = tp*0.025;
+			document.getElementById('sg').innerText=sgst;
+
+			var cgst = tp*0.025;
+			document.getElementById('cg').innerText = cgst;
+
+			igst = cgst+sgst;
+			document.getElementById('ig').innerText = igst;
+			console.log(sgst)
+			console.log(cgst)
+			console.log(igst)
+
+			var dis = parseFloat(document.getElementById('dis').value);
+			var disAmount = tp * (dis / 100);
+			document.getElementById('disp').innerText = parseInt(disAmount);
+			console.log(disAmount)
+
+
+			var netAmount = tp + igst - disAmount;
+			console.log(netAmount)
+			document.getElementById('net').innerText = netAmount;
+		}
+		function discount() {
+			var discountp = document.getElementById('dis').value;
+			document.getElementById('disp').innerText = discountp;
+			
+		}
+	</script>
+
+</body>
+</html>
