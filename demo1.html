@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Number Puzzle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .box {
+            width: 430px;
+            height: 450px;
+            margin: 10% auto;
+            display: grid;
+            grid-template-columns: repeat(3, 135px);
+            grid-gap: 5px;
+        }
+        .box input {
+            width: 125px;
+            height: 130px;
+            background-color: #bad7e0;
+            font-size: 30px;    
+            border: none;
+            text-align: center;
+        }
+        .resetbtn {
+            padding: 12px 30px;
+            background-color: #bad7e0;
+            margin: 10px auto;
+            display: block;
+            font-size: 20px;
+            border: none;
+        }
+        .resultp {
+            text-align: center; 
+            font-size: 30px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="puzzleBox">
+        <!-- Puzzle tiles will be created dynamically -->
+    </div>
+    <br>
+    <div id="result" class="resultp"></div>
+    <button class="resetbtn" onclick="initializePuzzle()">Reset</button>
+
+    <script>
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function initializePuzzle() {
+            let numbers = shuffle([1, 2, 3, 4, 5, 6, 7, 8, '']);
+            const puzzleBox = document.getElementById('puzzleBox');
+            puzzleBox.innerHTML = '';
+            
+            numbers.forEach((value, index) => {
+                const tile = document.createElement('input');
+                tile.type = 'button';
+                tile.value = value;
+                tile.onclick = () => moveTile(index);
+                tile.style.cursor = value === '' ? 'default' : 'pointer';
+                puzzleBox.appendChild(tile);
+            });
+
+            document.getElementById('result').innerText = '';
+        }
+
+        function moveTile(index) {
+            const tiles = Array.from(document.querySelectorAll('.box input'));
+            const emptyTile = tiles.find(tile => tile.value === '');
+            const tile = tiles[index];
+
+            const emptyIndex = tiles.indexOf(emptyTile);
+            const tileIndex = tiles.indexOf(tile);
+
+            // Check if they are adjacent
+            if (isAdjacent(emptyIndex, tileIndex)) {
+                [tile.value, emptyTile.value] = [emptyTile.value, tile.value];
+                checkResult();
+            }
+        }
+
+        function isAdjacent(emptyIndex, tileIndex) {
+            const rowCol = (index) => [Math.floor(index / 3), index % 3];
+            const [emptyRow, emptyCol] = rowCol(emptyIndex);
+            const [tileRow, tileCol] = rowCol(tileIndex);
+
+            return Math.abs(emptyRow - tileRow) + Math.abs(emptyCol - tileCol) === 1;
+        }
+
+        function checkResult() {
+            const expected = ['1', '2', '3', '4', '5', '6', '7', '8', ''];
+            const current = Array.from(document.querySelectorAll('.box input')).map(input => input.value);
+            
+            if (JSON.stringify(current) === JSON.stringify(expected)) {
+                document.getElementById('result').innerText = 'You won!';
+                document.querySelectorAll('.box input').forEach(input => input.disabled = true);
+            }
+        }
+
+        window.onload = initializePuzzle;
+    </script>
+</body>
+</html>
