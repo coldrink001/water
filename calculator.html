@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>calculator</title>
+	<style type="text/css">
+		
+		 body{
+			background-color: lightgrey     ;
+		 }
+		 .calculator{
+			height: 650px;
+			width: 390px;
+			margin: 30px 30%;
+			background-color: black;
+			border-radius: 20px;
+			box-shadow: 10px 10px 5px  rgb(72, 117, 133);
+		 }
+		 .light{
+			background-color: rgb(147, 172, 180);
+		 }
+		.btn input{
+			border: none;
+			color: white;
+			height: 70px;
+			width: 70px;
+			font-size: 20px;
+			border-radius: 10px;
+			&:hover{
+				box-shadow: 5px 5px 5px lightblue;
+			}
+
+		}
+		.btn{
+			display: flex;
+			padding: 15px 0;
+			justify-content: space-evenly;
+			
+		}
+		.dis input{
+			border: none;
+			text-align: right;
+			width: 100%;
+			border: none;
+			font-size: 40px;
+			padding: 0;
+			height: 140px;
+			border-radius: 20px 20px 0 0;
+
+		}
+		.dis input:focus{
+			outline: none;
+		}
+		.dark{
+			background-color: rgb(72, 117, 133);
+
+		}
+		.dis{
+			position: relative;
+		}
+		p{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+			color: black;
+			position: absolute;
+			top: 10%;
+			right: 0;
+			background-color: white;
+		}
+	</style>
+</head>
+<body>
+ 	<div class="calculator"><!-- 
+ 		<p id="pri" class="p"></p> -->
+ 		<div class="dis">
+ 			<p id='print'></p>
+			<input type="text" name="" id="dis" placeholder="0">
+		</div>
+		<div class="btn">
+			<input type="button" value="AC" class="dark" onclick="Ac()">
+			<input type="button" value="DEL" class="dark" onclick="del()">
+			<input type="button" value="%" class="dark" onclick="sign(this.value)">
+			<input type="button" value="+" class="dark" onclick="sign(this.value)">
+		</div>
+		<div class="btn">
+			<input type="button" value="7" class="light" onclick="btn(this.value)">
+			<input type="button" value="8" class="light" onclick="btn(this.value)">
+			<input type="button" value="9" class="light" onclick="btn(this.value)">
+			<input type="button" value="-" class="dark" onclick="sign(this.value)">
+		</div>
+		<div class="btn">
+			<input type="button" value="4" class="light" onclick="btn(this.value)">
+			<input type="button" value="5" class="light" onclick="btn(this.value)">
+			<input type="button" value="6" class="light" onclick="btn(this.value)">
+			<input type="button" value="*" class="dark" onclick="sign(this.value)">
+		</div>
+		<div class="btn">
+			<input type="button" value="1" class="light" onclick="btn(this.value)">
+			<input type="button" value="2" class="light" onclick="btn(this.value)">
+			<input type="button" value="3" class="light" onclick="btn(this.value)">
+			<input type="button" value="/" class="dark" onclick="sign(this.value)">
+		</div>
+		<div class="btn">
+			<input type="button" value="0" style="width: 166px;" class="light" onclick="btn(this.value)">
+			<input type="button" value="." class="light" ondblclick="btn(this.value)">
+			<input type="button" value="=" class="dark" onclick="ans()">
+		</div>
+ 	</div>
+
+ 	<script type="text/javascript">
+ 		var n1, n2,n;
+ 		function btn(e) {
+ 			document.getElementById('dis').value+=e;
+ 			document.getElementById('print').innerText+=e;
+ 		}
+ 		function sign(s) {
+ 			n1 = parseFloat(document.getElementById('dis').value);
+ 			document.getElementById('print').innerText+=s;
+ 			n=s;
+ 			document.getElementById('dis').value='';
+ 		}
+ 		function Ac()
+ 		{
+ 			document.getElementById('print').innerText = '';
+ 			document.getElementById('dis').value='';
+
+ 		}
+ 		function ans() {
+ 			n2=parseFloat(document.getElementById('dis').value);
+ 			var result
+ 			switch(n)
+ 			{
+ 				case '+':
+ 					result =n1+n2;
+ 					break;
+ 				case '-':
+ 					result = n1-n2;
+ 					break;
+ 				case '*': 					
+ 					result = n1*n2;
+ 					break;
+ 				case '/':
+ 					if(n2==0){
+ 						result = 'not divide by Zero'
+ 					}
+ 					else
+ 					{
+ 						result =n1/n2;
+ 					}
+ 					break;
+ 				case '%':
+ 					result =n1%n2;
+
+ 			}
+ 			document.getElementById('dis').value=result;
+
+
+ 		}
+ 		function del() {
+ 			var dlt = document.getElementById('dis').value;
+ 			document.getElementById('dis').value = dlt.slice(0 , -1)
+ 		}
+ 	</script>
+</body>
+</html>
